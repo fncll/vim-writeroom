@@ -11,7 +11,7 @@ function VimWriteRoom ()
 
 		let g:vimwriteroommode=1
 
-		let s:oldlines=&lines
+        let s:oldlines=&lines
 		let s:oldcolumns=&columns
 		let s:oldtextwidth=&textwidth
 		let s:oldguioption=&guioptions
@@ -19,7 +19,9 @@ function VimWriteRoom ()
 		let s:oldformatoptions=&formatoptions
 		let s:oldcolorscheme=g:colors_name
 		
-		let s:isfu=&fu
+        let s:showtabline=&showtabline
+		let s:laststatus=&laststatus
+        let s:isfu=&fu
 		let s:iswrap=&wrap
 		let s:islist=&list
 		let s:islinebreak=&linebreak
@@ -51,7 +53,7 @@ function VimWriteRoom ()
 		map j gj
 	else
 		let g:vimwriteroommode=0
-		let &lines=s:oldlines
+        let &lines=s:oldlines
 		let &columns=s:oldcolumns
 		let &textwidth=s:oldtextwidth
 		let &guioptions=s:oldguioption
@@ -67,7 +69,17 @@ function VimWriteRoom ()
 		
 		execute 'colorscheme '.s:oldcolorscheme
 
-		if (s:isfu == 1)
+		if (s:showtabline == 0)
+            set showtabline=2
+          else
+            set showtabline=0
+        endif
+        if (s:laststatus==0)
+            set laststatus=2
+          else
+            set laststatus=0
+        endif
+        if (s:isfu == 1)
 			set fu
 		else
 			set nofu
